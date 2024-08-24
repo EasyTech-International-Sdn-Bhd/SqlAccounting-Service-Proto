@@ -1,0 +1,80 @@
+syntax = "proto3";
+
+//protoc --go_out=. --go_opt=paths=source_relative \
+//    --go-grpc_out=. --go-grpc_opt=paths=source_relative \
+//    ./proto/configurator.proto
+
+
+option go_package = "github.com/easytech-international-sdn-bhd/sqlaccounting";
+
+package sqlaccounting;
+
+message CreateRequest {
+  string username = 1;
+  string password = 2;
+  string url = 3;
+  string appName = 4;
+}
+
+message IsDcfParsableRequest {
+  string dcfPath = 1;
+}
+
+message Database {
+  string database = 1;
+  string companyName = 2;
+  string remark = 3;
+  string version = 4;
+  string dbUsername = 5;
+  string dbPassword = 6;
+}
+
+message IsDcfParsableResponse {
+  repeated Database database = 1;
+}
+
+message TempPathRequest {
+  string tempPath = 1;
+}
+
+message PatchUrlRequest {
+  string patchUrl = 1;
+}
+
+message HookUrlRequest {
+  string hookUrl = 1;
+}
+
+message ReachableRequest {
+  string url = 1;
+}
+
+message LoginConfiguratorRequest {
+  string username = 1;
+  string password = 2;
+}
+
+message PluginResult {
+  string name = 1;
+  string error = 2;
+}
+
+message PluginResponse {
+  repeated PluginResult res = 1;
+}
+
+message Empty {
+}
+
+service SetupConfigurator {
+  rpc Create(CreateRequest) returns (Empty);
+  rpc IsDcfParsable(IsDcfParsableRequest) returns (IsDcfParsableResponse);
+  rpc SetDatabase(Database) returns (Empty);
+  rpc SetTempPath(TempPathRequest) returns (Empty);
+  rpc SetPatchUrl(PatchUrlRequest) returns (Empty);
+  rpc SetHookUrl(HookUrlRequest) returns (Empty);
+  rpc IsReachable(ReachableRequest) returns (Empty);
+  rpc LoginConfigurator(LoginConfiguratorRequest) returns (Empty);
+  rpc InstallPlugins(Empty) returns(PluginResponse);
+  rpc UninstallPlugins(Empty) returns(PluginResponse);
+}

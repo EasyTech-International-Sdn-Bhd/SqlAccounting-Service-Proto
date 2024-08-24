@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+//protoc --go_out=. --go_opt=paths=source_relative \
+//    --go-grpc_out=. --go-grpc_opt=paths=source_relative \
+//    ./proto/manager.proto
+
+option go_package = "github.com/easytech-international-sdn-bhd/sqlaccounting";
+
+package sqlaccounting;
+
+message TaskClientRequest {
+    int32 db = 1;
+    string addr = 2;
+    string username = 3;
+    string password = 4;
+}
+
+message ApiClientRequest {
+  string username = 1;
+  string password = 2;
+  string url = 3;
+  string appName = 4;
+}
+
+message GcpCredentialsRequest {
+  string jsonData = 1;
+}
+
+message GcpProjectIdRequest {
+  string projectId = 1;
+}
+
+message None {}
+
+service ManagerWorker {
+  rpc SetTaskClientConfig(TaskClientRequest) returns (None);
+  rpc SetApiClientConfig(ApiClientRequest) returns (None);
+  rpc SetGpcCredentials(GcpCredentialsRequest) returns (None);
+  rpc SetGcpProjectId(GcpProjectIdRequest) returns (None);
+  rpc RunManager(None) returns (None);
+}
