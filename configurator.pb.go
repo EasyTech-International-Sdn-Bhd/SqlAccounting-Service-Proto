@@ -4,7 +4,7 @@
 // 	protoc        v5.27.3
 // source: proto/configurator.proto
 
-package _go
+package proto
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"

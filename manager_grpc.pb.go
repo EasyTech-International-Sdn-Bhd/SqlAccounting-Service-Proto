@@ -4,7 +4,7 @@
 // - protoc             v5.27.3
 // source: proto/manager.proto
 
-package _go
+package proto
 
 import (
 	context "context"
