@@ -33,7 +33,7 @@ proto.proto = require('./manager_pb.js');
 proto.proto.ManagerConfiguratorClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
-  options.format = 'text';
+  options.format = 'binary';
 
   /**
    * @private @const {!grpc.web.GrpcWebClientBase} The client
@@ -59,7 +59,7 @@ proto.proto.ManagerConfiguratorClient =
 proto.proto.ManagerConfiguratorPromiseClient =
     function(hostname, credentials, options) {
   if (!options) options = {};
-  options.format = 'text';
+  options.format = 'binary';
 
   /**
    * @private @const {!grpc.web.GrpcWebClientBase} The client

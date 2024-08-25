@@ -6,7 +6,7 @@ syntax = "proto3";
 
 //    protoc -I=. configurator.proto \
 //    --js_out=import_style=commonjs,binary:./ts \
-//    --grpc-web_out=import_style=commonjs+dts,mode=grpcwebtext:./ts
+//    --grpc-web_out=import_style=commonjs,mode=grpcweb:./ts
 
 
 
