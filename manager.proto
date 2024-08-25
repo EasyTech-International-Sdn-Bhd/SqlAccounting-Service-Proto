@@ -40,7 +40,7 @@ message IdResponse {
 
 message None {}
 
-service ManagerWorker {
+service ManagerConfigurator {
   rpc SetTaskClientConfig(TaskClientRequest) returns (None);
   rpc SetApiClientConfig(ApiClientRequest) returns (None);
   rpc SetGpcCredentials(GcpCredentialsRequest) returns (None);

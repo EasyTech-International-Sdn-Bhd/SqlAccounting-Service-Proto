@@ -19,17 +19,17 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ManagerWorker_SetTaskClientConfig_FullMethodName = "/proto.ManagerWorker/SetTaskClientConfig"
-	ManagerWorker_SetApiClientConfig_FullMethodName  = "/proto.ManagerWorker/SetApiClientConfig"
-	ManagerWorker_SetGpcCredentials_FullMethodName   = "/proto.ManagerWorker/SetGpcCredentials"
-	ManagerWorker_SetGcpProjectId_FullMethodName     = "/proto.ManagerWorker/SetGcpProjectId"
-	ManagerWorker_GetServiceId_FullMethodName        = "/proto.ManagerWorker/GetServiceId"
+	ManagerConfigurator_SetTaskClientConfig_FullMethodName = "/proto.ManagerConfigurator/SetTaskClientConfig"
+	ManagerConfigurator_SetApiClientConfig_FullMethodName  = "/proto.ManagerConfigurator/SetApiClientConfig"
+	ManagerConfigurator_SetGpcCredentials_FullMethodName   = "/proto.ManagerConfigurator/SetGpcCredentials"
+	ManagerConfigurator_SetGcpProjectId_FullMethodName     = "/proto.ManagerConfigurator/SetGcpProjectId"
+	ManagerConfigurator_GetServiceId_FullMethodName        = "/proto.ManagerConfigurator/GetServiceId"
 )
 
-// ManagerWorkerClient is the client API for ManagerWorker service.
+// ManagerConfiguratorClient is the client API for ManagerConfigurator service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type ManagerWorkerClient interface {
+type ManagerConfiguratorClient interface {
 	SetTaskClientConfig(ctx context.Context, in *TaskClientRequest, opts ...grpc.CallOption) (*None, error)
 	SetApiClientConfig(ctx context.Context, in *ApiClientRequest, opts ...grpc.CallOption) (*None, error)
 	SetGpcCredentials(ctx context.Context, in *GcpCredentialsRequest, opts ...grpc.CallOption) (*None, error)
@@ -37,235 +37,235 @@ type ManagerWorkerClient interface {
 	GetServiceId(ctx context.Context, in *None, opts ...grpc.CallOption) (*IdResponse, error)
 }
 
-type managerWorkerClient struct {
+type managerConfiguratorClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewManagerWorkerClient(cc grpc.ClientConnInterface) ManagerWorkerClient {
-	return &managerWorkerClient{cc}
+func NewManagerConfiguratorClient(cc grpc.ClientConnInterface) ManagerConfiguratorClient {
+	return &managerConfiguratorClient{cc}
 }
 
-func (c *managerWorkerClient) SetTaskClientConfig(ctx context.Context, in *TaskClientRequest, opts ...grpc.CallOption) (*None, error) {
+func (c *managerConfiguratorClient) SetTaskClientConfig(ctx context.Context, in *TaskClientRequest, opts ...grpc.CallOption) (*None, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(None)
-	err := c.cc.Invoke(ctx, ManagerWorker_SetTaskClientConfig_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, ManagerConfigurator_SetTaskClientConfig_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *managerWorkerClient) SetApiClientConfig(ctx context.Context, in *ApiClientRequest, opts ...grpc.CallOption) (*None, error) {
+func (c *managerConfiguratorClient) SetApiClientConfig(ctx context.Context, in *ApiClientRequest, opts ...grpc.CallOption) (*None, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(None)
-	err := c.cc.Invoke(ctx, ManagerWorker_SetApiClientConfig_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, ManagerConfigurator_SetApiClientConfig_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *managerWorkerClient) SetGpcCredentials(ctx context.Context, in *GcpCredentialsRequest, opts ...grpc.CallOption) (*None, error) {
+func (c *managerConfiguratorClient) SetGpcCredentials(ctx context.Context, in *GcpCredentialsRequest, opts ...grpc.CallOption) (*None, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(None)
-	err := c.cc.Invoke(ctx, ManagerWorker_SetGpcCredentials_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, ManagerConfigurator_SetGpcCredentials_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *managerWorkerClient) SetGcpProjectId(ctx context.Context, in *GcpProjectIdRequest, opts ...grpc.CallOption) (*None, error) {
+func (c *managerConfiguratorClient) SetGcpProjectId(ctx context.Context, in *GcpProjectIdRequest, opts ...grpc.CallOption) (*None, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(None)
-	err := c.cc.Invoke(ctx, ManagerWorker_SetGcpProjectId_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, ManagerConfigurator_SetGcpProjectId_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-func (c *managerWorkerClient) GetServiceId(ctx context.Context, in *None, opts ...grpc.CallOption) (*IdResponse, error) {
+func (c *managerConfiguratorClient) GetServiceId(ctx context.Context, in *None, opts ...grpc.CallOption) (*IdResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(IdResponse)
-	err := c.cc.Invoke(ctx, ManagerWorker_GetServiceId_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, ManagerConfigurator_GetServiceId_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// ManagerWorkerServer is the server API for ManagerWorker service.
-// All implementations must embed UnimplementedManagerWorkerServer
+// ManagerConfiguratorServer is the server API for ManagerConfigurator service.
+// All implementations must embed UnimplementedManagerConfiguratorServer
 // for forward compatibility.
-type ManagerWorkerServer interface {
+type ManagerConfiguratorServer interface {
 	SetTaskClientConfig(context.Context, *TaskClientRequest) (*None, error)
 	SetApiClientConfig(context.Context, *ApiClientRequest) (*None, error)
 	SetGpcCredentials(context.Context, *GcpCredentialsRequest) (*None, error)
 	SetGcpProjectId(context.Context, *GcpProjectIdRequest) (*None, error)
 	GetServiceId(context.Context, *None) (*IdResponse, error)
-	mustEmbedUnimplementedManagerWorkerServer()
+	mustEmbedUnimplementedManagerConfiguratorServer()
 }
 
-// UnimplementedManagerWorkerServer must be embedded to have
+// UnimplementedManagerConfiguratorServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedManagerWorkerServer struct{}
+type UnimplementedManagerConfiguratorServer struct{}
 
-func (UnimplementedManagerWorkerServer) SetTaskClientConfig(context.Context, *TaskClientRequest) (*None, error) {
+func (UnimplementedManagerConfiguratorServer) SetTaskClientConfig(context.Context, *TaskClientRequest) (*None, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetTaskClientConfig not implemented")
 }
-func (UnimplementedManagerWorkerServer) SetApiClientConfig(context.Context, *ApiClientRequest) (*None, error) {
+func (UnimplementedManagerConfiguratorServer) SetApiClientConfig(context.Context, *ApiClientRequest) (*None, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetApiClientConfig not implemented")
 }
-func (UnimplementedManagerWorkerServer) SetGpcCredentials(context.Context, *GcpCredentialsRequest) (*None, error) {
+func (UnimplementedManagerConfiguratorServer) SetGpcCredentials(context.Context, *GcpCredentialsRequest) (*None, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetGpcCredentials not implemented")
 }
-func (UnimplementedManagerWorkerServer) SetGcpProjectId(context.Context, *GcpProjectIdRequest) (*None, error) {
+func (UnimplementedManagerConfiguratorServer) SetGcpProjectId(context.Context, *GcpProjectIdRequest) (*None, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetGcpProjectId not implemented")
 }
-func (UnimplementedManagerWorkerServer) GetServiceId(context.Context, *None) (*IdResponse, error) {
+func (UnimplementedManagerConfiguratorServer) GetServiceId(context.Context, *None) (*IdResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetServiceId not implemented")
 }
-func (UnimplementedManagerWorkerServer) mustEmbedUnimplementedManagerWorkerServer() {}
-func (UnimplementedManagerWorkerServer) testEmbeddedByValue()                       {}
+func (UnimplementedManagerConfiguratorServer) mustEmbedUnimplementedManagerConfiguratorServer() {}
+func (UnimplementedManagerConfiguratorServer) testEmbeddedByValue()                             {}
 
-// UnsafeManagerWorkerServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to ManagerWorkerServer will
+// UnsafeManagerConfiguratorServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to ManagerConfiguratorServer will
 // result in compilation errors.
-type UnsafeManagerWorkerServer interface {
-	mustEmbedUnimplementedManagerWorkerServer()
+type UnsafeManagerConfiguratorServer interface {
+	mustEmbedUnimplementedManagerConfiguratorServer()
 }
 
-func RegisterManagerWorkerServer(s grpc.ServiceRegistrar, srv ManagerWorkerServer) {
-	// If the following call pancis, it indicates UnimplementedManagerWorkerServer was
+func RegisterManagerConfiguratorServer(s grpc.ServiceRegistrar, srv ManagerConfiguratorServer) {
+	// If the following call pancis, it indicates UnimplementedManagerConfiguratorServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&ManagerWorker_ServiceDesc, srv)
+	s.RegisterService(&ManagerConfigurator_ServiceDesc, srv)
 }
 
-func _ManagerWorker_SetTaskClientConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ManagerConfigurator_SetTaskClientConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(TaskClientRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ManagerWorkerServer).SetTaskClientConfig(ctx, in)
+		return srv.(ManagerConfiguratorServer).SetTaskClientConfig(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ManagerWorker_SetTaskClientConfig_FullMethodName,
+		FullMethod: ManagerConfigurator_SetTaskClientConfig_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ManagerWorkerServer).SetTaskClientConfig(ctx, req.(*TaskClientRequest))
+		return srv.(ManagerConfiguratorServer).SetTaskClientConfig(ctx, req.(*TaskClientRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ManagerWorker_SetApiClientConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ManagerConfigurator_SetApiClientConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(ApiClientRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ManagerWorkerServer).SetApiClientConfig(ctx, in)
+		return srv.(ManagerConfiguratorServer).SetApiClientConfig(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ManagerWorker_SetApiClientConfig_FullMethodName,
+		FullMethod: ManagerConfigurator_SetApiClientConfig_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ManagerWorkerServer).SetApiClientConfig(ctx, req.(*ApiClientRequest))
+		return srv.(ManagerConfiguratorServer).SetApiClientConfig(ctx, req.(*ApiClientRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ManagerWorker_SetGpcCredentials_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ManagerConfigurator_SetGpcCredentials_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GcpCredentialsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ManagerWorkerServer).SetGpcCredentials(ctx, in)
+		return srv.(ManagerConfiguratorServer).SetGpcCredentials(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ManagerWorker_SetGpcCredentials_FullMethodName,
+		FullMethod: ManagerConfigurator_SetGpcCredentials_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ManagerWorkerServer).SetGpcCredentials(ctx, req.(*GcpCredentialsRequest))
+		return srv.(ManagerConfiguratorServer).SetGpcCredentials(ctx, req.(*GcpCredentialsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ManagerWorker_SetGcpProjectId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ManagerConfigurator_SetGcpProjectId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GcpProjectIdRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ManagerWorkerServer).SetGcpProjectId(ctx, in)
+		return srv.(ManagerConfiguratorServer).SetGcpProjectId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ManagerWorker_SetGcpProjectId_FullMethodName,
+		FullMethod: ManagerConfigurator_SetGcpProjectId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ManagerWorkerServer).SetGcpProjectId(ctx, req.(*GcpProjectIdRequest))
+		return srv.(ManagerConfiguratorServer).SetGcpProjectId(ctx, req.(*GcpProjectIdRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-func _ManagerWorker_GetServiceId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ManagerConfigurator_GetServiceId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(None)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ManagerWorkerServer).GetServiceId(ctx, in)
+		return srv.(ManagerConfiguratorServer).GetServiceId(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ManagerWorker_GetServiceId_FullMethodName,
+		FullMethod: ManagerConfigurator_GetServiceId_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ManagerWorkerServer).GetServiceId(ctx, req.(*None))
+		return srv.(ManagerConfiguratorServer).GetServiceId(ctx, req.(*None))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// ManagerWorker_ServiceDesc is the grpc.ServiceDesc for ManagerWorker service.
+// ManagerConfigurator_ServiceDesc is the grpc.ServiceDesc for ManagerConfigurator service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var ManagerWorker_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "proto.ManagerWorker",
-	HandlerType: (*ManagerWorkerServer)(nil),
+var ManagerConfigurator_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "proto.ManagerConfigurator",
+	HandlerType: (*ManagerConfiguratorServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "SetTaskClientConfig",
-			Handler:    _ManagerWorker_SetTaskClientConfig_Handler,
+			Handler:    _ManagerConfigurator_SetTaskClientConfig_Handler,
 		},
 		{
 			MethodName: "SetApiClientConfig",
-			Handler:    _ManagerWorker_SetApiClientConfig_Handler,
+			Handler:    _ManagerConfigurator_SetApiClientConfig_Handler,
 		},
 		{
 			MethodName: "SetGpcCredentials",
-			Handler:    _ManagerWorker_SetGpcCredentials_Handler,
+			Handler:    _ManagerConfigurator_SetGpcCredentials_Handler,
 		},
 		{
 			MethodName: "SetGcpProjectId",
-			Handler:    _ManagerWorker_SetGcpProjectId_Handler,
+			Handler:    _ManagerConfigurator_SetGcpProjectId_Handler,
 		},
 		{
 			MethodName: "GetServiceId",
-			Handler:    _ManagerWorker_GetServiceId_Handler,
+			Handler:    _ManagerConfigurator_GetServiceId_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
