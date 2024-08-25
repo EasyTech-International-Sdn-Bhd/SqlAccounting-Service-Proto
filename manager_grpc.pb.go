@@ -23,6 +23,7 @@ const (
 	ManagerWorker_SetApiClientConfig_FullMethodName  = "/sqlaccounting.ManagerWorker/SetApiClientConfig"
 	ManagerWorker_SetGpcCredentials_FullMethodName   = "/sqlaccounting.ManagerWorker/SetGpcCredentials"
 	ManagerWorker_SetGcpProjectId_FullMethodName     = "/sqlaccounting.ManagerWorker/SetGcpProjectId"
+	ManagerWorker_GetServiceId_FullMethodName        = "/sqlaccounting.ManagerWorker/GetServiceId"
 )
 
 // ManagerWorkerClient is the client API for ManagerWorker service.
@@ -33,6 +34,7 @@ type ManagerWorkerClient interface {
 	SetApiClientConfig(ctx context.Context, in *ApiClientRequest, opts ...grpc.CallOption) (*None, error)
 	SetGpcCredentials(ctx context.Context, in *GcpCredentialsRequest, opts ...grpc.CallOption) (*None, error)
 	SetGcpProjectId(ctx context.Context, in *GcpProjectIdRequest, opts ...grpc.CallOption) (*None, error)
+	GetServiceId(ctx context.Context, in *None, opts ...grpc.CallOption) (*IdResponse, error)
 }
 
 type managerWorkerClient struct {
@@ -83,6 +85,16 @@ func (c *managerWorkerClient) SetGcpProjectId(ctx context.Context, in *GcpProjec
 	return out, nil
 }
 
+func (c *managerWorkerClient) GetServiceId(ctx context.Context, in *None, opts ...grpc.CallOption) (*IdResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(IdResponse)
+	err := c.cc.Invoke(ctx, ManagerWorker_GetServiceId_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ManagerWorkerServer is the server API for ManagerWorker service.
 // All implementations must embed UnimplementedManagerWorkerServer
 // for forward compatibility.
@@ -91,6 +103,7 @@ type ManagerWorkerServer interface {
 	SetApiClientConfig(context.Context, *ApiClientRequest) (*None, error)
 	SetGpcCredentials(context.Context, *GcpCredentialsRequest) (*None, error)
 	SetGcpProjectId(context.Context, *GcpProjectIdRequest) (*None, error)
+	GetServiceId(context.Context, *None) (*IdResponse, error)
 	mustEmbedUnimplementedManagerWorkerServer()
 }
 
@@ -112,6 +125,9 @@ func (UnimplementedManagerWorkerServer) SetGpcCredentials(context.Context, *GcpC
 }
 func (UnimplementedManagerWorkerServer) SetGcpProjectId(context.Context, *GcpProjectIdRequest) (*None, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetGcpProjectId not implemented")
+}
+func (UnimplementedManagerWorkerServer) GetServiceId(context.Context, *None) (*IdResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetServiceId not implemented")
 }
 func (UnimplementedManagerWorkerServer) mustEmbedUnimplementedManagerWorkerServer() {}
 func (UnimplementedManagerWorkerServer) testEmbeddedByValue()                       {}
@@ -206,6 +222,24 @@ func _ManagerWorker_SetGcpProjectId_Handler(srv interface{}, ctx context.Context
 	return interceptor(ctx, in, info, handler)
 }
 
+func _ManagerWorker_GetServiceId_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(None)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ManagerWorkerServer).GetServiceId(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ManagerWorker_GetServiceId_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ManagerWorkerServer).GetServiceId(ctx, req.(*None))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ManagerWorker_ServiceDesc is the grpc.ServiceDesc for ManagerWorker service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -228,6 +262,10 @@ var ManagerWorker_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SetGcpProjectId",
 			Handler:    _ManagerWorker_SetGcpProjectId_Handler,
+		},
+		{
+			MethodName: "GetServiceId",
+			Handler:    _ManagerWorker_GetServiceId_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
