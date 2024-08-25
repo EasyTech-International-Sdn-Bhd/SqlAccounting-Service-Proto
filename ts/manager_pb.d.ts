@@ -98,6 +98,24 @@ export namespace GcpProjectIdRequest {
   }
 }
 
+export class IdResponse extends jspb.Message {
+  getServiceid(): string;
+  setServiceid(value: string): IdResponse;
+
+  serializeBinary(): Uint8Array;
+  toObject(includeInstance?: boolean): IdResponse.AsObject;
+  static toObject(includeInstance: boolean, msg: IdResponse): IdResponse.AsObject;
+  static serializeBinaryToWriter(message: IdResponse, writer: jspb.BinaryWriter): void;
+  static deserializeBinary(bytes: Uint8Array): IdResponse;
+  static deserializeBinaryFromReader(message: IdResponse, reader: jspb.BinaryReader): IdResponse;
+}
+
+export namespace IdResponse {
+  export type AsObject = {
+    serviceid: string,
+  }
+}
+
 export class None extends jspb.Message {
   serializeBinary(): Uint8Array;
   toObject(includeInstance?: boolean): None.AsObject;

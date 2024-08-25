@@ -211,5 +211,48 @@ export class ManagerWorkerClient {
     this.methodDescriptorSetGcpProjectId);
   }
 
+  methodDescriptorGetServiceId = new grpcWeb.MethodDescriptor(
+    '/sqlaccounting.ManagerWorker/GetServiceId',
+    grpcWeb.MethodType.UNARY,
+    manager_pb.None,
+    manager_pb.IdResponse,
+    (request: manager_pb.None) => {
+      return request.serializeBinary();
+    },
+    manager_pb.IdResponse.deserializeBinary
+  );
+
+  getServiceId(
+    request: manager_pb.None,
+    metadata?: grpcWeb.Metadata | null): Promise<manager_pb.IdResponse>;
+
+  getServiceId(
+    request: manager_pb.None,
+    metadata: grpcWeb.Metadata | null,
+    callback: (err: grpcWeb.RpcError,
+               response: manager_pb.IdResponse) => void): grpcWeb.ClientReadableStream<manager_pb.IdResponse>;
+
+  getServiceId(
+    request: manager_pb.None,
+    metadata?: grpcWeb.Metadata | null,
+    callback?: (err: grpcWeb.RpcError,
+               response: manager_pb.IdResponse) => void) {
+    if (callback !== undefined) {
+      return this.client_.rpcCall(
+        this.hostname_ +
+          '/sqlaccounting.ManagerWorker/GetServiceId',
+        request,
+        metadata || {},
+        this.methodDescriptorGetServiceId,
+        callback);
+    }
+    return this.client_.unaryCall(
+    this.hostname_ +
+      '/sqlaccounting.ManagerWorker/GetServiceId',
+    request,
+    metadata || {},
+    this.methodDescriptorGetServiceId);
+  }
+
 }
 

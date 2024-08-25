@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-//protoc --go_out=./go --go_opt=paths=source_relative \
-//    --go-grpc_out=./go --go-grpc_opt=paths=source_relative \
+//protoc --go_out=./proto --go_opt=paths=source_relative \
+//    --go-grpc_out=./proto --go-grpc_opt=paths=source_relative \
 //    ./proto/configurator.proto
 
 //    protoc -I=. configurator.proto \
