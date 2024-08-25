@@ -36,7 +36,7 @@ class Nothing$Type extends MessageType<Nothing> {
             reflectionMergePartial<Nothing>(this, message, value);
         return message;
     }
-    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: Nothing): Nothing {
+    internalBinaryRead(_reader: IBinaryReader, _length: number, _options: BinaryReadOptions, target?: Nothing): Nothing {
         return target ?? this.create();
     }
     internalBinaryWrite(message: Nothing, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {

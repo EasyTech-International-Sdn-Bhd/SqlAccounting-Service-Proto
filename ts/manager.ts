@@ -379,7 +379,7 @@ class None$Type extends MessageType<None> {
             reflectionMergePartial<None>(this, message, value);
         return message;
     }
-    internalBinaryRead(reader: IBinaryReader, length: number, options: BinaryReadOptions, target?: None): None {
+    internalBinaryRead(_reader: IBinaryReader, _length: number, _options: BinaryReadOptions, target?: None): None {
         return target ?? this.create();
     }
     internalBinaryWrite(message: None, writer: IBinaryWriter, options: BinaryWriteOptions): IBinaryWriter {
