@@ -8,6 +8,8 @@ syntax = "proto3";
 //    --js_out=import_style=commonjs,binary:./ts \
 //    --grpc-web_out=import_style=typescript,mode=grpcweb:./ts
 
+// protoc -I=. --ts_out ./ts --proto_path . manager.proto
+
 option go_package = "github.com/easytech-international-sdn-bhd/sqlaccounting/proto";
 
 package proto;
