@@ -4,7 +4,7 @@
 // - protoc             v5.27.3
 // source: proto/configurator.proto
 
-package sqlaccounting
+package _go
 
 import (
 	context "context"

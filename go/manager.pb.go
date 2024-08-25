@@ -4,7 +4,7 @@
 // 	protoc        v5.27.3
 // source: proto/manager.proto
 
-package sqlaccounting
+package _go
 
 import (
 	protoreflect "google.golang.org/protobuf/reflect/protoreflect"
