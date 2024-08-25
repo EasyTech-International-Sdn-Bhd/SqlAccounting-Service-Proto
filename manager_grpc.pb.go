@@ -19,11 +19,11 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ManagerWorker_SetTaskClientConfig_FullMethodName = "/sqlaccounting.ManagerWorker/SetTaskClientConfig"
-	ManagerWorker_SetApiClientConfig_FullMethodName  = "/sqlaccounting.ManagerWorker/SetApiClientConfig"
-	ManagerWorker_SetGpcCredentials_FullMethodName   = "/sqlaccounting.ManagerWorker/SetGpcCredentials"
-	ManagerWorker_SetGcpProjectId_FullMethodName     = "/sqlaccounting.ManagerWorker/SetGcpProjectId"
-	ManagerWorker_GetServiceId_FullMethodName        = "/sqlaccounting.ManagerWorker/GetServiceId"
+	ManagerWorker_SetTaskClientConfig_FullMethodName = "/proto.ManagerWorker/SetTaskClientConfig"
+	ManagerWorker_SetApiClientConfig_FullMethodName  = "/proto.ManagerWorker/SetApiClientConfig"
+	ManagerWorker_SetGpcCredentials_FullMethodName   = "/proto.ManagerWorker/SetGpcCredentials"
+	ManagerWorker_SetGcpProjectId_FullMethodName     = "/proto.ManagerWorker/SetGcpProjectId"
+	ManagerWorker_GetServiceId_FullMethodName        = "/proto.ManagerWorker/GetServiceId"
 )
 
 // ManagerWorkerClient is the client API for ManagerWorker service.
@@ -244,7 +244,7 @@ func _ManagerWorker_GetServiceId_Handler(srv interface{}, ctx context.Context, d
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var ManagerWorker_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "sqlaccounting.ManagerWorker",
+	ServiceName: "proto.ManagerWorker",
 	HandlerType: (*ManagerWorkerServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{

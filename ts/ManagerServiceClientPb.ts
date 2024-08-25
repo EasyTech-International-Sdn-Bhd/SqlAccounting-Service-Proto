@@ -1,5 +1,5 @@
 /**
- * @fileoverview gRPC-Web generated client stub for sqlaccounting
+ * @fileoverview gRPC-Web generated client stub for proto
  * @enhanceable
  * @public
  */
@@ -40,7 +40,7 @@ export class ManagerWorkerClient {
   }
 
   methodDescriptorSetTaskClientConfig = new grpcWeb.MethodDescriptor(
-    '/sqlaccounting.ManagerWorker/SetTaskClientConfig',
+    '/proto.ManagerWorker/SetTaskClientConfig',
     grpcWeb.MethodType.UNARY,
     manager_pb.TaskClientRequest,
     manager_pb.None,
@@ -68,7 +68,7 @@ export class ManagerWorkerClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/sqlaccounting.ManagerWorker/SetTaskClientConfig',
+          '/proto.ManagerWorker/SetTaskClientConfig',
         request,
         metadata || {},
         this.methodDescriptorSetTaskClientConfig,
@@ -76,14 +76,14 @@ export class ManagerWorkerClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/sqlaccounting.ManagerWorker/SetTaskClientConfig',
+      '/proto.ManagerWorker/SetTaskClientConfig',
     request,
     metadata || {},
     this.methodDescriptorSetTaskClientConfig);
   }
 
   methodDescriptorSetApiClientConfig = new grpcWeb.MethodDescriptor(
-    '/sqlaccounting.ManagerWorker/SetApiClientConfig',
+    '/proto.ManagerWorker/SetApiClientConfig',
     grpcWeb.MethodType.UNARY,
     manager_pb.ApiClientRequest,
     manager_pb.None,
@@ -111,7 +111,7 @@ export class ManagerWorkerClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/sqlaccounting.ManagerWorker/SetApiClientConfig',
+          '/proto.ManagerWorker/SetApiClientConfig',
         request,
         metadata || {},
         this.methodDescriptorSetApiClientConfig,
@@ -119,14 +119,14 @@ export class ManagerWorkerClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/sqlaccounting.ManagerWorker/SetApiClientConfig',
+      '/proto.ManagerWorker/SetApiClientConfig',
     request,
     metadata || {},
     this.methodDescriptorSetApiClientConfig);
   }
 
   methodDescriptorSetGpcCredentials = new grpcWeb.MethodDescriptor(
-    '/sqlaccounting.ManagerWorker/SetGpcCredentials',
+    '/proto.ManagerWorker/SetGpcCredentials',
     grpcWeb.MethodType.UNARY,
     manager_pb.GcpCredentialsRequest,
     manager_pb.None,
@@ -154,7 +154,7 @@ export class ManagerWorkerClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/sqlaccounting.ManagerWorker/SetGpcCredentials',
+          '/proto.ManagerWorker/SetGpcCredentials',
         request,
         metadata || {},
         this.methodDescriptorSetGpcCredentials,
@@ -162,14 +162,14 @@ export class ManagerWorkerClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/sqlaccounting.ManagerWorker/SetGpcCredentials',
+      '/proto.ManagerWorker/SetGpcCredentials',
     request,
     metadata || {},
     this.methodDescriptorSetGpcCredentials);
   }
 
   methodDescriptorSetGcpProjectId = new grpcWeb.MethodDescriptor(
-    '/sqlaccounting.ManagerWorker/SetGcpProjectId',
+    '/proto.ManagerWorker/SetGcpProjectId',
     grpcWeb.MethodType.UNARY,
     manager_pb.GcpProjectIdRequest,
     manager_pb.None,
@@ -197,7 +197,7 @@ export class ManagerWorkerClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/sqlaccounting.ManagerWorker/SetGcpProjectId',
+          '/proto.ManagerWorker/SetGcpProjectId',
         request,
         metadata || {},
         this.methodDescriptorSetGcpProjectId,
@@ -205,14 +205,14 @@ export class ManagerWorkerClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/sqlaccounting.ManagerWorker/SetGcpProjectId',
+      '/proto.ManagerWorker/SetGcpProjectId',
     request,
     metadata || {},
     this.methodDescriptorSetGcpProjectId);
   }
 
   methodDescriptorGetServiceId = new grpcWeb.MethodDescriptor(
-    '/sqlaccounting.ManagerWorker/GetServiceId',
+    '/proto.ManagerWorker/GetServiceId',
     grpcWeb.MethodType.UNARY,
     manager_pb.None,
     manager_pb.IdResponse,
@@ -240,7 +240,7 @@ export class ManagerWorkerClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/sqlaccounting.ManagerWorker/GetServiceId',
+          '/proto.ManagerWorker/GetServiceId',
         request,
         metadata || {},
         this.methodDescriptorGetServiceId,
@@ -248,7 +248,7 @@ export class ManagerWorkerClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/sqlaccounting.ManagerWorker/GetServiceId',
+      '/proto.ManagerWorker/GetServiceId',
     request,
     metadata || {},
     this.methodDescriptorGetServiceId);

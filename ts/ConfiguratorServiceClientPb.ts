@@ -1,5 +1,5 @@
 /**
- * @fileoverview gRPC-Web generated client stub for sqlaccounting
+ * @fileoverview gRPC-Web generated client stub for proto
  * @enhanceable
  * @public
  */
@@ -40,7 +40,7 @@ export class SetupConfiguratorClient {
   }
 
   methodDescriptorCreate = new grpcWeb.MethodDescriptor(
-    '/sqlaccounting.SetupConfigurator/Create',
+    '/proto.SetupConfigurator/Create',
     grpcWeb.MethodType.UNARY,
     configurator_pb.CreateRequest,
     configurator_pb.Empty,
@@ -68,7 +68,7 @@ export class SetupConfiguratorClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/sqlaccounting.SetupConfigurator/Create',
+          '/proto.SetupConfigurator/Create',
         request,
         metadata || {},
         this.methodDescriptorCreate,
@@ -76,14 +76,14 @@ export class SetupConfiguratorClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/sqlaccounting.SetupConfigurator/Create',
+      '/proto.SetupConfigurator/Create',
     request,
     metadata || {},
     this.methodDescriptorCreate);
   }
 
   methodDescriptorIsDcfParsable = new grpcWeb.MethodDescriptor(
-    '/sqlaccounting.SetupConfigurator/IsDcfParsable',
+    '/proto.SetupConfigurator/IsDcfParsable',
     grpcWeb.MethodType.UNARY,
     configurator_pb.IsDcfParsableRequest,
     configurator_pb.IsDcfParsableResponse,
@@ -111,7 +111,7 @@ export class SetupConfiguratorClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/sqlaccounting.SetupConfigurator/IsDcfParsable',
+          '/proto.SetupConfigurator/IsDcfParsable',
         request,
         metadata || {},
         this.methodDescriptorIsDcfParsable,
@@ -119,14 +119,14 @@ export class SetupConfiguratorClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/sqlaccounting.SetupConfigurator/IsDcfParsable',
+      '/proto.SetupConfigurator/IsDcfParsable',
     request,
     metadata || {},
     this.methodDescriptorIsDcfParsable);
   }
 
   methodDescriptorSetDatabase = new grpcWeb.MethodDescriptor(
-    '/sqlaccounting.SetupConfigurator/SetDatabase',
+    '/proto.SetupConfigurator/SetDatabase',
     grpcWeb.MethodType.UNARY,
     configurator_pb.Database,
     configurator_pb.Empty,
@@ -154,7 +154,7 @@ export class SetupConfiguratorClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/sqlaccounting.SetupConfigurator/SetDatabase',
+          '/proto.SetupConfigurator/SetDatabase',
         request,
         metadata || {},
         this.methodDescriptorSetDatabase,
@@ -162,14 +162,14 @@ export class SetupConfiguratorClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/sqlaccounting.SetupConfigurator/SetDatabase',
+      '/proto.SetupConfigurator/SetDatabase',
     request,
     metadata || {},
     this.methodDescriptorSetDatabase);
   }
 
   methodDescriptorSetTempPath = new grpcWeb.MethodDescriptor(
-    '/sqlaccounting.SetupConfigurator/SetTempPath',
+    '/proto.SetupConfigurator/SetTempPath',
     grpcWeb.MethodType.UNARY,
     configurator_pb.TempPathRequest,
     configurator_pb.Empty,
@@ -197,7 +197,7 @@ export class SetupConfiguratorClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/sqlaccounting.SetupConfigurator/SetTempPath',
+          '/proto.SetupConfigurator/SetTempPath',
         request,
         metadata || {},
         this.methodDescriptorSetTempPath,
@@ -205,14 +205,14 @@ export class SetupConfiguratorClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/sqlaccounting.SetupConfigurator/SetTempPath',
+      '/proto.SetupConfigurator/SetTempPath',
     request,
     metadata || {},
     this.methodDescriptorSetTempPath);
   }
 
   methodDescriptorSetPatchUrl = new grpcWeb.MethodDescriptor(
-    '/sqlaccounting.SetupConfigurator/SetPatchUrl',
+    '/proto.SetupConfigurator/SetPatchUrl',
     grpcWeb.MethodType.UNARY,
     configurator_pb.PatchUrlRequest,
     configurator_pb.Empty,
@@ -240,7 +240,7 @@ export class SetupConfiguratorClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/sqlaccounting.SetupConfigurator/SetPatchUrl',
+          '/proto.SetupConfigurator/SetPatchUrl',
         request,
         metadata || {},
         this.methodDescriptorSetPatchUrl,
@@ -248,14 +248,14 @@ export class SetupConfiguratorClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/sqlaccounting.SetupConfigurator/SetPatchUrl',
+      '/proto.SetupConfigurator/SetPatchUrl',
     request,
     metadata || {},
     this.methodDescriptorSetPatchUrl);
   }
 
   methodDescriptorSetHookUrl = new grpcWeb.MethodDescriptor(
-    '/sqlaccounting.SetupConfigurator/SetHookUrl',
+    '/proto.SetupConfigurator/SetHookUrl',
     grpcWeb.MethodType.UNARY,
     configurator_pb.HookUrlRequest,
     configurator_pb.Empty,
@@ -283,7 +283,7 @@ export class SetupConfiguratorClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/sqlaccounting.SetupConfigurator/SetHookUrl',
+          '/proto.SetupConfigurator/SetHookUrl',
         request,
         metadata || {},
         this.methodDescriptorSetHookUrl,
@@ -291,14 +291,14 @@ export class SetupConfiguratorClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/sqlaccounting.SetupConfigurator/SetHookUrl',
+      '/proto.SetupConfigurator/SetHookUrl',
     request,
     metadata || {},
     this.methodDescriptorSetHookUrl);
   }
 
   methodDescriptorIsReachable = new grpcWeb.MethodDescriptor(
-    '/sqlaccounting.SetupConfigurator/IsReachable',
+    '/proto.SetupConfigurator/IsReachable',
     grpcWeb.MethodType.UNARY,
     configurator_pb.ReachableRequest,
     configurator_pb.Empty,
@@ -326,7 +326,7 @@ export class SetupConfiguratorClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/sqlaccounting.SetupConfigurator/IsReachable',
+          '/proto.SetupConfigurator/IsReachable',
         request,
         metadata || {},
         this.methodDescriptorIsReachable,
@@ -334,14 +334,14 @@ export class SetupConfiguratorClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/sqlaccounting.SetupConfigurator/IsReachable',
+      '/proto.SetupConfigurator/IsReachable',
     request,
     metadata || {},
     this.methodDescriptorIsReachable);
   }
 
   methodDescriptorLoginConfigurator = new grpcWeb.MethodDescriptor(
-    '/sqlaccounting.SetupConfigurator/LoginConfigurator',
+    '/proto.SetupConfigurator/LoginConfigurator',
     grpcWeb.MethodType.UNARY,
     configurator_pb.LoginConfiguratorRequest,
     configurator_pb.Empty,
@@ -369,7 +369,7 @@ export class SetupConfiguratorClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/sqlaccounting.SetupConfigurator/LoginConfigurator',
+          '/proto.SetupConfigurator/LoginConfigurator',
         request,
         metadata || {},
         this.methodDescriptorLoginConfigurator,
@@ -377,14 +377,14 @@ export class SetupConfiguratorClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/sqlaccounting.SetupConfigurator/LoginConfigurator',
+      '/proto.SetupConfigurator/LoginConfigurator',
     request,
     metadata || {},
     this.methodDescriptorLoginConfigurator);
   }
 
   methodDescriptorInstallPlugins = new grpcWeb.MethodDescriptor(
-    '/sqlaccounting.SetupConfigurator/InstallPlugins',
+    '/proto.SetupConfigurator/InstallPlugins',
     grpcWeb.MethodType.UNARY,
     configurator_pb.Empty,
     configurator_pb.PluginResponse,
@@ -412,7 +412,7 @@ export class SetupConfiguratorClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/sqlaccounting.SetupConfigurator/InstallPlugins',
+          '/proto.SetupConfigurator/InstallPlugins',
         request,
         metadata || {},
         this.methodDescriptorInstallPlugins,
@@ -420,14 +420,14 @@ export class SetupConfiguratorClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/sqlaccounting.SetupConfigurator/InstallPlugins',
+      '/proto.SetupConfigurator/InstallPlugins',
     request,
     metadata || {},
     this.methodDescriptorInstallPlugins);
   }
 
   methodDescriptorUninstallPlugins = new grpcWeb.MethodDescriptor(
-    '/sqlaccounting.SetupConfigurator/UninstallPlugins',
+    '/proto.SetupConfigurator/UninstallPlugins',
     grpcWeb.MethodType.UNARY,
     configurator_pb.Empty,
     configurator_pb.PluginResponse,
@@ -455,7 +455,7 @@ export class SetupConfiguratorClient {
     if (callback !== undefined) {
       return this.client_.rpcCall(
         this.hostname_ +
-          '/sqlaccounting.SetupConfigurator/UninstallPlugins',
+          '/proto.SetupConfigurator/UninstallPlugins',
         request,
         metadata || {},
         this.methodDescriptorUninstallPlugins,
@@ -463,7 +463,7 @@ export class SetupConfiguratorClient {
     }
     return this.client_.unaryCall(
     this.hostname_ +
-      '/sqlaccounting.SetupConfigurator/UninstallPlugins',
+      '/proto.SetupConfigurator/UninstallPlugins',
     request,
     metadata || {},
     this.methodDescriptorUninstallPlugins);

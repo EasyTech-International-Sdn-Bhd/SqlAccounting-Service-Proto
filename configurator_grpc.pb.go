@@ -19,16 +19,16 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	SetupConfigurator_Create_FullMethodName            = "/sqlaccounting.SetupConfigurator/Create"
-	SetupConfigurator_IsDcfParsable_FullMethodName     = "/sqlaccounting.SetupConfigurator/IsDcfParsable"
-	SetupConfigurator_SetDatabase_FullMethodName       = "/sqlaccounting.SetupConfigurator/SetDatabase"
-	SetupConfigurator_SetTempPath_FullMethodName       = "/sqlaccounting.SetupConfigurator/SetTempPath"
-	SetupConfigurator_SetPatchUrl_FullMethodName       = "/sqlaccounting.SetupConfigurator/SetPatchUrl"
-	SetupConfigurator_SetHookUrl_FullMethodName        = "/sqlaccounting.SetupConfigurator/SetHookUrl"
-	SetupConfigurator_IsReachable_FullMethodName       = "/sqlaccounting.SetupConfigurator/IsReachable"
-	SetupConfigurator_LoginConfigurator_FullMethodName = "/sqlaccounting.SetupConfigurator/LoginConfigurator"
-	SetupConfigurator_InstallPlugins_FullMethodName    = "/sqlaccounting.SetupConfigurator/InstallPlugins"
-	SetupConfigurator_UninstallPlugins_FullMethodName  = "/sqlaccounting.SetupConfigurator/UninstallPlugins"
+	SetupConfigurator_Create_FullMethodName            = "/proto.SetupConfigurator/Create"
+	SetupConfigurator_IsDcfParsable_FullMethodName     = "/proto.SetupConfigurator/IsDcfParsable"
+	SetupConfigurator_SetDatabase_FullMethodName       = "/proto.SetupConfigurator/SetDatabase"
+	SetupConfigurator_SetTempPath_FullMethodName       = "/proto.SetupConfigurator/SetTempPath"
+	SetupConfigurator_SetPatchUrl_FullMethodName       = "/proto.SetupConfigurator/SetPatchUrl"
+	SetupConfigurator_SetHookUrl_FullMethodName        = "/proto.SetupConfigurator/SetHookUrl"
+	SetupConfigurator_IsReachable_FullMethodName       = "/proto.SetupConfigurator/IsReachable"
+	SetupConfigurator_LoginConfigurator_FullMethodName = "/proto.SetupConfigurator/LoginConfigurator"
+	SetupConfigurator_InstallPlugins_FullMethodName    = "/proto.SetupConfigurator/InstallPlugins"
+	SetupConfigurator_UninstallPlugins_FullMethodName  = "/proto.SetupConfigurator/UninstallPlugins"
 )
 
 // SetupConfiguratorClient is the client API for SetupConfigurator service.
@@ -414,7 +414,7 @@ func _SetupConfigurator_UninstallPlugins_Handler(srv interface{}, ctx context.Co
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
 var SetupConfigurator_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "sqlaccounting.SetupConfigurator",
+	ServiceName: "proto.SetupConfigurator",
 	HandlerType: (*SetupConfiguratorServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
