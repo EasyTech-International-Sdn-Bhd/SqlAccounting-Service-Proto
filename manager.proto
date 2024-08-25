@@ -37,5 +37,4 @@ service ManagerWorker {
   rpc SetApiClientConfig(ApiClientRequest) returns (None);
   rpc SetGpcCredentials(GcpCredentialsRequest) returns (None);
   rpc SetGcpProjectId(GcpProjectIdRequest) returns (None);
-  rpc RunManager(None) returns (None);
 }
