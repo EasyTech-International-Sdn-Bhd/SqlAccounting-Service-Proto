@@ -31,7 +31,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ManagerConfiguratorClient interface {
 	SetTaskClientConfig(ctx context.Context, in *TaskClientRequest, opts ...grpc.CallOption) (*None, error)
-	SetApiClientConfig(ctx context.Context, in *ApiClientRequest, opts ...grpc.CallOption) (*None, error)
+	SetApiClientConfig(ctx context.Context, in *ApiClientRequest, opts ...grpc.CallOption) (*ClientId, error)
 	SetGpcCredentials(ctx context.Context, in *GcpCredentialsRequest, opts ...grpc.CallOption) (*None, error)
 	SetGcpProjectId(ctx context.Context, in *GcpProjectIdRequest, opts ...grpc.CallOption) (*None, error)
 	GetServiceId(ctx context.Context, in *None, opts ...grpc.CallOption) (*IdResponse, error)
@@ -55,9 +55,9 @@ func (c *managerConfiguratorClient) SetTaskClientConfig(ctx context.Context, in 
 	return out, nil
 }
 
-func (c *managerConfiguratorClient) SetApiClientConfig(ctx context.Context, in *ApiClientRequest, opts ...grpc.CallOption) (*None, error) {
+func (c *managerConfiguratorClient) SetApiClientConfig(ctx context.Context, in *ApiClientRequest, opts ...grpc.CallOption) (*ClientId, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(None)
+	out := new(ClientId)
 	err := c.cc.Invoke(ctx, ManagerConfigurator_SetApiClientConfig_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -100,7 +100,7 @@ func (c *managerConfiguratorClient) GetServiceId(ctx context.Context, in *None, 
 // for forward compatibility.
 type ManagerConfiguratorServer interface {
 	SetTaskClientConfig(context.Context, *TaskClientRequest) (*None, error)
-	SetApiClientConfig(context.Context, *ApiClientRequest) (*None, error)
+	SetApiClientConfig(context.Context, *ApiClientRequest) (*ClientId, error)
 	SetGpcCredentials(context.Context, *GcpCredentialsRequest) (*None, error)
 	SetGcpProjectId(context.Context, *GcpProjectIdRequest) (*None, error)
 	GetServiceId(context.Context, *None) (*IdResponse, error)
@@ -117,7 +117,7 @@ type UnimplementedManagerConfiguratorServer struct{}
 func (UnimplementedManagerConfiguratorServer) SetTaskClientConfig(context.Context, *TaskClientRequest) (*None, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetTaskClientConfig not implemented")
 }
-func (UnimplementedManagerConfiguratorServer) SetApiClientConfig(context.Context, *ApiClientRequest) (*None, error) {
+func (UnimplementedManagerConfiguratorServer) SetApiClientConfig(context.Context, *ApiClientRequest) (*ClientId, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetApiClientConfig not implemented")
 }
 func (UnimplementedManagerConfiguratorServer) SetGpcCredentials(context.Context, *GcpCredentialsRequest) (*None, error) {

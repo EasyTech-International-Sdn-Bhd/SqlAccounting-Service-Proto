@@ -40,11 +40,15 @@ message IdResponse {
   string serviceId = 1;
 }
 
+message ClientId {
+  string id = 1;
+}
+
 message None {}
 
 service ManagerConfigurator {
   rpc SetTaskClientConfig(TaskClientRequest) returns (None);
-  rpc SetApiClientConfig(ApiClientRequest) returns (None);
+  rpc SetApiClientConfig(ApiClientRequest) returns (ClientId);
   rpc SetGpcCredentials(GcpCredentialsRequest) returns (None);
   rpc SetGcpProjectId(GcpProjectIdRequest) returns (None);
   rpc GetServiceId(None) returns (IdResponse);

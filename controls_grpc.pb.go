@@ -19,17 +19,23 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	ControlManagement_Ping_FullMethodName    = "/proto.ControlManagement/Ping"
-	ControlManagement_Start_FullMethodName   = "/proto.ControlManagement/Start"
-	ControlManagement_Stop_FullMethodName    = "/proto.ControlManagement/Stop"
-	ControlManagement_Restart_FullMethodName = "/proto.ControlManagement/Restart"
+	ControlManagement_JobTracking_FullMethodName        = "/proto.ControlManagement/JobTracking"
+	ControlManagement_ErrorTracking_FullMethodName      = "/proto.ControlManagement/ErrorTracking"
+	ControlManagement_RetrieveEverything_FullMethodName = "/proto.ControlManagement/RetrieveEverything"
+	ControlManagement_Ping_FullMethodName               = "/proto.ControlManagement/Ping"
+	ControlManagement_Start_FullMethodName              = "/proto.ControlManagement/Start"
+	ControlManagement_Stop_FullMethodName               = "/proto.ControlManagement/Stop"
+	ControlManagement_Restart_FullMethodName            = "/proto.ControlManagement/Restart"
 )
 
 // ControlManagementClient is the client API for ControlManagement service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type ControlManagementClient interface {
-	Ping(ctx context.Context, in *Nothing, opts ...grpc.CallOption) (*Result, error)
+	JobTracking(ctx context.Context, in *Nothing, opts ...grpc.CallOption) (grpc.ServerStreamingClient[JobTrackingResponse], error)
+	ErrorTracking(ctx context.Context, in *Nothing, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ErrorMessage], error)
+	RetrieveEverything(ctx context.Context, in *Nothing, opts ...grpc.CallOption) (*Result, error)
+	Ping(ctx context.Context, in *Nothing, opts ...grpc.CallOption) (grpc.ServerStreamingClient[PingResponse], error)
 	Start(ctx context.Context, in *Nothing, opts ...grpc.CallOption) (*Result, error)
 	Stop(ctx context.Context, in *Nothing, opts ...grpc.CallOption) (*Result, error)
 	Restart(ctx context.Context, in *Nothing, opts ...grpc.CallOption) (*Result, error)
@@ -43,15 +49,72 @@ func NewControlManagementClient(cc grpc.ClientConnInterface) ControlManagementCl
 	return &controlManagementClient{cc}
 }
 
-func (c *controlManagementClient) Ping(ctx context.Context, in *Nothing, opts ...grpc.CallOption) (*Result, error) {
+func (c *controlManagementClient) JobTracking(ctx context.Context, in *Nothing, opts ...grpc.CallOption) (grpc.ServerStreamingClient[JobTrackingResponse], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &ControlManagement_ServiceDesc.Streams[0], ControlManagement_JobTracking_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[Nothing, JobTrackingResponse]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type ControlManagement_JobTrackingClient = grpc.ServerStreamingClient[JobTrackingResponse]
+
+func (c *controlManagementClient) ErrorTracking(ctx context.Context, in *Nothing, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ErrorMessage], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &ControlManagement_ServiceDesc.Streams[1], ControlManagement_ErrorTracking_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[Nothing, ErrorMessage]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type ControlManagement_ErrorTrackingClient = grpc.ServerStreamingClient[ErrorMessage]
+
+func (c *controlManagementClient) RetrieveEverything(ctx context.Context, in *Nothing, opts ...grpc.CallOption) (*Result, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Result)
-	err := c.cc.Invoke(ctx, ControlManagement_Ping_FullMethodName, in, out, cOpts...)
+	err := c.cc.Invoke(ctx, ControlManagement_RetrieveEverything_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
+
+func (c *controlManagementClient) Ping(ctx context.Context, in *Nothing, opts ...grpc.CallOption) (grpc.ServerStreamingClient[PingResponse], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &ControlManagement_ServiceDesc.Streams[2], ControlManagement_Ping_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[Nothing, PingResponse]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type ControlManagement_PingClient = grpc.ServerStreamingClient[PingResponse]
 
 func (c *controlManagementClient) Start(ctx context.Context, in *Nothing, opts ...grpc.CallOption) (*Result, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
@@ -87,7 +150,10 @@ func (c *controlManagementClient) Restart(ctx context.Context, in *Nothing, opts
 // All implementations must embed UnimplementedControlManagementServer
 // for forward compatibility.
 type ControlManagementServer interface {
-	Ping(context.Context, *Nothing) (*Result, error)
+	JobTracking(*Nothing, grpc.ServerStreamingServer[JobTrackingResponse]) error
+	ErrorTracking(*Nothing, grpc.ServerStreamingServer[ErrorMessage]) error
+	RetrieveEverything(context.Context, *Nothing) (*Result, error)
+	Ping(*Nothing, grpc.ServerStreamingServer[PingResponse]) error
 	Start(context.Context, *Nothing) (*Result, error)
 	Stop(context.Context, *Nothing) (*Result, error)
 	Restart(context.Context, *Nothing) (*Result, error)
@@ -101,8 +167,17 @@ type ControlManagementServer interface {
 // pointer dereference when methods are called.
 type UnimplementedControlManagementServer struct{}
 
-func (UnimplementedControlManagementServer) Ping(context.Context, *Nothing) (*Result, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method Ping not implemented")
+func (UnimplementedControlManagementServer) JobTracking(*Nothing, grpc.ServerStreamingServer[JobTrackingResponse]) error {
+	return status.Errorf(codes.Unimplemented, "method JobTracking not implemented")
+}
+func (UnimplementedControlManagementServer) ErrorTracking(*Nothing, grpc.ServerStreamingServer[ErrorMessage]) error {
+	return status.Errorf(codes.Unimplemented, "method ErrorTracking not implemented")
+}
+func (UnimplementedControlManagementServer) RetrieveEverything(context.Context, *Nothing) (*Result, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method RetrieveEverything not implemented")
+}
+func (UnimplementedControlManagementServer) Ping(*Nothing, grpc.ServerStreamingServer[PingResponse]) error {
+	return status.Errorf(codes.Unimplemented, "method Ping not implemented")
 }
 func (UnimplementedControlManagementServer) Start(context.Context, *Nothing) (*Result, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method Start not implemented")
@@ -134,23 +209,56 @@ func RegisterControlManagementServer(s grpc.ServiceRegistrar, srv ControlManagem
 	s.RegisterService(&ControlManagement_ServiceDesc, srv)
 }
 
-func _ControlManagement_Ping_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+func _ControlManagement_JobTracking_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(Nothing)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(ControlManagementServer).JobTracking(m, &grpc.GenericServerStream[Nothing, JobTrackingResponse]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type ControlManagement_JobTrackingServer = grpc.ServerStreamingServer[JobTrackingResponse]
+
+func _ControlManagement_ErrorTracking_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(Nothing)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(ControlManagementServer).ErrorTracking(m, &grpc.GenericServerStream[Nothing, ErrorMessage]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type ControlManagement_ErrorTrackingServer = grpc.ServerStreamingServer[ErrorMessage]
+
+func _ControlManagement_RetrieveEverything_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Nothing)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(ControlManagementServer).Ping(ctx, in)
+		return srv.(ControlManagementServer).RetrieveEverything(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: ControlManagement_Ping_FullMethodName,
+		FullMethod: ControlManagement_RetrieveEverything_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(ControlManagementServer).Ping(ctx, req.(*Nothing))
+		return srv.(ControlManagementServer).RetrieveEverything(ctx, req.(*Nothing))
 	}
 	return interceptor(ctx, in, info, handler)
 }
+
+func _ControlManagement_Ping_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(Nothing)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(ControlManagementServer).Ping(m, &grpc.GenericServerStream[Nothing, PingResponse]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type ControlManagement_PingServer = grpc.ServerStreamingServer[PingResponse]
 
 func _ControlManagement_Start_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(Nothing)
@@ -214,8 +322,8 @@ var ControlManagement_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*ControlManagementServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "Ping",
-			Handler:    _ControlManagement_Ping_Handler,
+			MethodName: "RetrieveEverything",
+			Handler:    _ControlManagement_RetrieveEverything_Handler,
 		},
 		{
 			MethodName: "Start",
@@ -230,6 +338,22 @@ var ControlManagement_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _ControlManagement_Restart_Handler,
 		},
 	},
-	Streams:  []grpc.StreamDesc{},
+	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "JobTracking",
+			Handler:       _ControlManagement_JobTracking_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "ErrorTracking",
+			Handler:       _ControlManagement_ErrorTracking_Handler,
+			ServerStreams: true,
+		},
+		{
+			StreamName:    "Ping",
+			Handler:       _ControlManagement_Ping_Handler,
+			ServerStreams: true,
+		},
+	},
 	Metadata: "proto/controls.proto",
 }

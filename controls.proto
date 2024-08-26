@@ -18,12 +18,47 @@ message Nothing {
 
 }
 
+message MemUsage {
+  uint64 alloc = 1;
+  uint64 totalAlloc = 2;
+  uint64 sys = 3;
+  uint32 numGC = 4;
+}
+
+message CpuUsage {
+  int32 cpus = 1;
+  int32 routines = 2;
+}
+
+message PingResponse {
+  CpuUsage cpu = 1;
+  MemUsage mem = 2;
+  string uptime = 3;
+  bool managerRunning = 4;
+}
+
+message ErrorMessage {
+  string err = 1;
+}
+
+message JobTrackingResponse {
+  int32 active = 1;
+  int32 processed = 2;
+  int32 completed = 3;
+  int32 pending = 4;
+  int32 retry = 5;
+  int32 failed = 6;
+}
+
 message Result {
   bool ok = 1;
 }
 
 service ControlManagement {
-  rpc Ping(Nothing) returns (Result);
+  rpc JobTracking(Nothing) returns (stream JobTrackingResponse);
+  rpc ErrorTracking(Nothing) returns (stream ErrorMessage);
+  rpc RetrieveEverything(Nothing) returns (Result);
+  rpc Ping(Nothing) returns (stream PingResponse);
   rpc Start(Nothing) returns (Result);
   rpc Stop(Nothing) returns (Result);
   rpc Restart(Nothing) returns (Result);
