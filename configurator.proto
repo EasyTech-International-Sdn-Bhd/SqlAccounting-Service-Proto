@@ -104,7 +104,6 @@ service SetupConfigurator {
   rpc InstallPlugins(Empty) returns(PluginResponse);
   rpc UninstallPlugins(Empty) returns(PluginResponse);
   rpc SetTaskClientConfig(TaskClientRequest) returns (Empty);
-  rpc SetApiClientConfig(CreateRequest) returns (ClientId);
   rpc SetGpcCredentials(GcpCredentialsRequest) returns (Empty);
   rpc SetGcpProjectId(GcpProjectIdRequest) returns (Empty);
   rpc GetServiceId(Empty) returns (IdResponse);

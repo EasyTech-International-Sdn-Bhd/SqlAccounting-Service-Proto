@@ -30,7 +30,6 @@ const (
 	SetupConfigurator_InstallPlugins_FullMethodName      = "/proto.SetupConfigurator/InstallPlugins"
 	SetupConfigurator_UninstallPlugins_FullMethodName    = "/proto.SetupConfigurator/UninstallPlugins"
 	SetupConfigurator_SetTaskClientConfig_FullMethodName = "/proto.SetupConfigurator/SetTaskClientConfig"
-	SetupConfigurator_SetApiClientConfig_FullMethodName  = "/proto.SetupConfigurator/SetApiClientConfig"
 	SetupConfigurator_SetGpcCredentials_FullMethodName   = "/proto.SetupConfigurator/SetGpcCredentials"
 	SetupConfigurator_SetGcpProjectId_FullMethodName     = "/proto.SetupConfigurator/SetGcpProjectId"
 	SetupConfigurator_GetServiceId_FullMethodName        = "/proto.SetupConfigurator/GetServiceId"
@@ -51,7 +50,6 @@ type SetupConfiguratorClient interface {
 	InstallPlugins(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*PluginResponse, error)
 	UninstallPlugins(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*PluginResponse, error)
 	SetTaskClientConfig(ctx context.Context, in *TaskClientRequest, opts ...grpc.CallOption) (*Empty, error)
-	SetApiClientConfig(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*ClientId, error)
 	SetGpcCredentials(ctx context.Context, in *GcpCredentialsRequest, opts ...grpc.CallOption) (*Empty, error)
 	SetGcpProjectId(ctx context.Context, in *GcpProjectIdRequest, opts ...grpc.CallOption) (*Empty, error)
 	GetServiceId(ctx context.Context, in *Empty, opts ...grpc.CallOption) (*IdResponse, error)
@@ -175,16 +173,6 @@ func (c *setupConfiguratorClient) SetTaskClientConfig(ctx context.Context, in *T
 	return out, nil
 }
 
-func (c *setupConfiguratorClient) SetApiClientConfig(ctx context.Context, in *CreateRequest, opts ...grpc.CallOption) (*ClientId, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(ClientId)
-	err := c.cc.Invoke(ctx, SetupConfigurator_SetApiClientConfig_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 func (c *setupConfiguratorClient) SetGpcCredentials(ctx context.Context, in *GcpCredentialsRequest, opts ...grpc.CallOption) (*Empty, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(Empty)
@@ -230,7 +218,6 @@ type SetupConfiguratorServer interface {
 	InstallPlugins(context.Context, *Empty) (*PluginResponse, error)
 	UninstallPlugins(context.Context, *Empty) (*PluginResponse, error)
 	SetTaskClientConfig(context.Context, *TaskClientRequest) (*Empty, error)
-	SetApiClientConfig(context.Context, *CreateRequest) (*ClientId, error)
 	SetGpcCredentials(context.Context, *GcpCredentialsRequest) (*Empty, error)
 	SetGcpProjectId(context.Context, *GcpProjectIdRequest) (*Empty, error)
 	GetServiceId(context.Context, *Empty) (*IdResponse, error)
@@ -276,9 +263,6 @@ func (UnimplementedSetupConfiguratorServer) UninstallPlugins(context.Context, *E
 }
 func (UnimplementedSetupConfiguratorServer) SetTaskClientConfig(context.Context, *TaskClientRequest) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetTaskClientConfig not implemented")
-}
-func (UnimplementedSetupConfiguratorServer) SetApiClientConfig(context.Context, *CreateRequest) (*ClientId, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SetApiClientConfig not implemented")
 }
 func (UnimplementedSetupConfiguratorServer) SetGpcCredentials(context.Context, *GcpCredentialsRequest) (*Empty, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SetGpcCredentials not implemented")
@@ -508,24 +492,6 @@ func _SetupConfigurator_SetTaskClientConfig_Handler(srv interface{}, ctx context
 	return interceptor(ctx, in, info, handler)
 }
 
-func _SetupConfigurator_SetApiClientConfig_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(CreateRequest)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(SetupConfiguratorServer).SetApiClientConfig(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: SetupConfigurator_SetApiClientConfig_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(SetupConfiguratorServer).SetApiClientConfig(ctx, req.(*CreateRequest))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 func _SetupConfigurator_SetGpcCredentials_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
 	in := new(GcpCredentialsRequest)
 	if err := dec(in); err != nil {
@@ -630,10 +596,6 @@ var SetupConfigurator_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "SetTaskClientConfig",
 			Handler:    _SetupConfigurator_SetTaskClientConfig_Handler,
-		},
-		{
-			MethodName: "SetApiClientConfig",
-			Handler:    _SetupConfigurator_SetApiClientConfig_Handler,
 		},
 		{
 			MethodName: "SetGpcCredentials",
