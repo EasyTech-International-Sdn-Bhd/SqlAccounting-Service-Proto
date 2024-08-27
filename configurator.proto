@@ -1,8 +1,6 @@
 syntax = "proto3";
 
-//protoc --go_out=. --go_opt=paths=source_relative \
-//    --go-grpc_out=. --go-grpc_opt=paths=source_relative \
-//    ./proto/configurator.proto
+//protoc --go_out=. --go_opt=paths=source_relative --go-grpc_out=. --go-grpc_opt=paths=source_relative ./proto/configurator.proto
 
 //    protoc -I=. configurator.proto \
 //    --js_out=import_style=commonjs,binary:./ts \
@@ -13,6 +11,13 @@ syntax = "proto3";
 option go_package = "github.com/easytech-international-sdn-bhd/sqlaccounting/proto";
 
 package proto;
+
+message TaskClientRequest {
+  int32 db = 1;
+  string addr = 2;
+  string username = 3;
+  string password = 4;
+}
 
 message CreateRequest {
   string username = 1;
@@ -68,6 +73,22 @@ message PluginResponse {
   repeated PluginResult res = 1;
 }
 
+message GcpCredentialsRequest {
+  string jsonData = 1;
+}
+
+message GcpProjectIdRequest {
+  string projectId = 1;
+}
+
+message IdResponse {
+  string serviceId = 1;
+}
+
+message ClientId {
+  string id = 1;
+}
+
 message Empty {
 }
 
@@ -82,4 +103,9 @@ service SetupConfigurator {
   rpc LoginConfigurator(LoginConfiguratorRequest) returns (Empty);
   rpc InstallPlugins(Empty) returns(PluginResponse);
   rpc UninstallPlugins(Empty) returns(PluginResponse);
+  rpc SetTaskClientConfig(TaskClientRequest) returns (Empty);
+  rpc SetApiClientConfig(CreateRequest) returns (ClientId);
+  rpc SetGpcCredentials(GcpCredentialsRequest) returns (Empty);
+  rpc SetGcpProjectId(GcpProjectIdRequest) returns (Empty);
+  rpc GetServiceId(Empty) returns (IdResponse);
 }

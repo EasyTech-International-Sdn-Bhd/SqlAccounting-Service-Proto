@@ -59,7 +59,4 @@ service ControlManagement {
   rpc ErrorTracking(Nothing) returns (stream ErrorMessage);
   rpc RetrieveEverything(Nothing) returns (Result);
   rpc Ping(Nothing) returns (stream PingResponse);
-  rpc Start(Nothing) returns (Result);
-  rpc Stop(Nothing) returns (Result);
-  rpc Restart(Nothing) returns (Result);
 }
