@@ -23,6 +23,7 @@ const (
 	ControlManagement_ErrorTracking_FullMethodName      = "/proto.ControlManagement/ErrorTracking"
 	ControlManagement_RetrieveEverything_FullMethodName = "/proto.ControlManagement/RetrieveEverything"
 	ControlManagement_Monitor_FullMethodName            = "/proto.ControlManagement/Monitor"
+	ControlManagement_ConfigPath_FullMethodName         = "/proto.ControlManagement/ConfigPath"
 )
 
 // ControlManagementClient is the client API for ControlManagement service.
@@ -33,6 +34,7 @@ type ControlManagementClient interface {
 	ErrorTracking(ctx context.Context, in *Nothing, opts ...grpc.CallOption) (grpc.ServerStreamingClient[ErrorMessage], error)
 	RetrieveEverything(ctx context.Context, in *Nothing, opts ...grpc.CallOption) (*Result, error)
 	Monitor(ctx context.Context, in *Nothing, opts ...grpc.CallOption) (grpc.ServerStreamingClient[PingResponse], error)
+	ConfigPath(ctx context.Context, in *Nothing, opts ...grpc.CallOption) (*ConfigPathResponse, error)
 }
 
 type controlManagementClient struct {
@@ -110,6 +112,16 @@ func (c *controlManagementClient) Monitor(ctx context.Context, in *Nothing, opts
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type ControlManagement_MonitorClient = grpc.ServerStreamingClient[PingResponse]
 
+func (c *controlManagementClient) ConfigPath(ctx context.Context, in *Nothing, opts ...grpc.CallOption) (*ConfigPathResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(ConfigPathResponse)
+	err := c.cc.Invoke(ctx, ControlManagement_ConfigPath_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // ControlManagementServer is the server API for ControlManagement service.
 // All implementations must embed UnimplementedControlManagementServer
 // for forward compatibility.
@@ -118,6 +130,7 @@ type ControlManagementServer interface {
 	ErrorTracking(*Nothing, grpc.ServerStreamingServer[ErrorMessage]) error
 	RetrieveEverything(context.Context, *Nothing) (*Result, error)
 	Monitor(*Nothing, grpc.ServerStreamingServer[PingResponse]) error
+	ConfigPath(context.Context, *Nothing) (*ConfigPathResponse, error)
 	mustEmbedUnimplementedControlManagementServer()
 }
 
@@ -139,6 +152,9 @@ func (UnimplementedControlManagementServer) RetrieveEverything(context.Context, 
 }
 func (UnimplementedControlManagementServer) Monitor(*Nothing, grpc.ServerStreamingServer[PingResponse]) error {
 	return status.Errorf(codes.Unimplemented, "method Monitor not implemented")
+}
+func (UnimplementedControlManagementServer) ConfigPath(context.Context, *Nothing) (*ConfigPathResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ConfigPath not implemented")
 }
 func (UnimplementedControlManagementServer) mustEmbedUnimplementedControlManagementServer() {}
 func (UnimplementedControlManagementServer) testEmbeddedByValue()                           {}
@@ -212,6 +228,24 @@ func _ControlManagement_Monitor_Handler(srv interface{}, stream grpc.ServerStrea
 // This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
 type ControlManagement_MonitorServer = grpc.ServerStreamingServer[PingResponse]
 
+func _ControlManagement_ConfigPath_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(Nothing)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(ControlManagementServer).ConfigPath(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: ControlManagement_ConfigPath_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(ControlManagementServer).ConfigPath(ctx, req.(*Nothing))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // ControlManagement_ServiceDesc is the grpc.ServiceDesc for ControlManagement service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -222,6 +256,10 @@ var ControlManagement_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "RetrieveEverything",
 			Handler:    _ControlManagement_RetrieveEverything_Handler,
+		},
+		{
+			MethodName: "ConfigPath",
+			Handler:    _ControlManagement_ConfigPath_Handler,
 		},
 	},
 	Streams: []grpc.StreamDesc{

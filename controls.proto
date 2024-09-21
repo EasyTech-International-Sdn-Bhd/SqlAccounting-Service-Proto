@@ -49,6 +49,10 @@ message JobTrackingResponse {
   string name = 7;
 }
 
+message ConfigPathResponse {
+  string path = 1;
+}
+
 message Result {
   bool ok = 1;
 }
@@ -58,4 +62,5 @@ service ControlManagement {
   rpc ErrorTracking(Nothing) returns (stream ErrorMessage);
   rpc RetrieveEverything(Nothing) returns (Result);
   rpc Monitor(Nothing) returns (stream PingResponse);
+  rpc ConfigPath(Nothing) returns (ConfigPathResponse);
 }
